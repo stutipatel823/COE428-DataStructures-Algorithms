@@ -1,0 +1,7 @@
+Everything Worked!
+However, I counldn't get it to indent for child node.
+Also, you may have to press "ctrl + d" twice to stop inputting values.
+
+For sortHeap and addHeap I took help from the following websites...
+https://www.programiz.com/dsa/heap-data-structure
+https://www.geeksforgeeks.org/building-heap-from-array/

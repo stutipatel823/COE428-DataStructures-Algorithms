@@ -1,0 +1,174 @@
+#include <stdlib.h>
+#include <stdio.h>
+typedef struct stateMachine{
+    char letter;
+	int index;
+	struct stateMachine * state_zero;
+	struct stateMachine * state_first;
+} machine;
+
+machine s[8];
+
+void initialize(){
+         //State A
+         s[0].letter = 'A';
+	 s[0].index = 0;
+	 s[0].state_zero = s+5; 
+	 s[0].state_first = s+2; 
+	 
+	 //State B
+	 s[1].letter = 'B';
+	 s[1].index = 1;
+	 s[1].state_zero = s + 6;
+	 s[1].state_first = s + 4;
+	 
+	 //State C
+	 s[2].letter = 'C';
+	 s[2].index = 2;
+	 s[2].state_zero = s + 3; 
+	 s[2].state_first = s + 2; 
+	 
+	 //State D
+	 s[3].letter = 'D';
+	 s[3].index = 3;
+	 s[3].state_zero = s + 1; 
+	 s[3].state_first = s + 7; 
+	 
+	 //State E
+	 s[4].letter = 'E';
+	 s[4].index = 4;
+	 s[4].state_zero = s + 2; 
+	 s[4].state_first = s + 6;
+ 
+     //State F
+	 s[5].letter = 'F';
+	 s[5].index = 5;
+	 s[5].state_zero = s + 4;
+	 s[5].state_first = s + 0;
+	 
+	 //State G
+	 s[6].letter = 'G';
+	 s[6].index = 6;
+	 s[6].state_zero = s + 7; 
+	 s[6].state_first = s + 5; 
+	 
+	 //State H
+	 s[7].letter = 'H';
+	 s[7].index = 7;
+	 s[7].state_zero = s + 0; 
+	 s[7].state_first = s + 1; 	 
+}
+void print(){
+       int i=0;
+          for(i =0; i <=7; i++){
+			fprintf(stdout, "%c %c %c\n", s[i].letter, s[i].state_zero->letter, s[i].state_first->letter);
+		  }
+}
+int main(int argc, char * argv[])
+{
+  int i=0;
+  char input[3]; 
+  initialize();
+  machine current = s[3]; //Starting State of FSM which is D
+
+  
+
+  fprintf(stdout, "Rules: \n1. p = print machine\n2. 0/1 = state \n3. e = end simulation.\n");
+  fprintf(stdout, "4. c = change states (DO NOT have spaces when changing states)\n");
+  fprintf(stdout, "Starting State: %c \n", current.letter);
+  
+  while(i==0){
+     fprintf(stdout,"Command..\n");
+     scanf("%s",input);
+     switch(input[0]){
+		case 'p':
+			print();
+			break;
+		case '0':
+			
+			fprintf(stdout,"%c \n",current.state_zero->letter);
+			current = s[current.state_zero->index];
+			break;
+		case '1':
+			fprintf(stdout, "%c \n",current.state_first->letter);
+			current = s[current.state_first->index];
+			break;
+		case 'e':
+			i=1;
+			break;
+		case 'c':
+			if(input[1] == '0'){
+			   if(input[2] == 'A'){
+			   current.state_zero = s;
+			   s[current.index].state_zero = s;
+			   }	
+			   else if(input[2] == 'B'){
+			   current.state_zero = s+1;
+			   s[current.index].state_zero = s+1;
+			   }
+			   else if(input[2] == 'C'){
+			   current.state_zero = s+2;
+			   s[current.index].state_zero = s+2;
+			   }
+			   else if(input[2] == 'D'){
+			   current.state_zero = s+3;
+			   s[current.index].state_zero = s+3;
+			   }
+			   else if(input[2] == 'E'){
+			   current.state_zero = s+4;
+			   s[current.index].state_zero = s+4;
+			   }
+			   else if(input[2] == 'F'){
+			   current.state_zero = s+5;
+			   s[current.index].state_zero = s+5;
+			   }
+			   else if(input[2] == 'G'){
+			   current.state_zero = s+6;
+			   s[current.index].state_zero = s+6;
+			   }	
+			   else if(input[2] == 'H'){
+			   current.state_zero = s+7;
+			   s[current.index].state_zero = s+7;
+			   }		   
+		    }
+		   else if(input[1] == '1'){
+			   if(input[2] == 'A'){
+			   current.state_first = s;
+			   s[current.index].state_first = s;
+			   }	
+			   else if(input[2] == 'B'){
+			   current.state_first = s+1;
+			   s[current.index].state_first = s+1;
+			   }
+			   else if(input[2] == 'C'){
+			   current.state_first = s+2;
+			   s[current.index].state_first = s+2;
+			   }
+			   else if(input[2] == 'D'){
+			   current.state_first = s+3;
+			   s[current.index].state_first = s+3;
+			   }
+			   else if(input[2] == 'E'){
+			   current.state_first = s+4;
+			   s[current.index].state_first = s+4;
+			   }
+			   else if(input[2] == 'F'){
+			   current.state_first = s+5;
+			   s[current.index].state_first = s+5;
+			   }
+			   else if(input[2] == 'G'){
+			   current.state_first = s+6;
+			   s[current.index].state_first = s+6;
+			   }	
+			   else if(input[2] == 'H'){
+			   current.state_first = s+7;
+			   s[current.index].state_first = s+7;
+			   }
+		  }
+	   }
+	}
+	exit(0);
+}
+
+
+

@@ -1,0 +1,60 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "mySort.h"
+
+int main(int argc, char * argv[])/*argc is the total number of command line input.
+				   argv is the array of those inputs(seperated by spaces).*/
+{
+	 int data[100000]; /* Array of ints to sort */
+	 int nDataItems; /* number of actual items in the array */ 
+	 int i;
+	 if(argc == 1){ /*argc == 1  means there are no further inputs after testSort2 is called
+			  because testSort2 is considered as an arguement itself.*/
+	   
+		 /* Test data */
+		 nDataItems = 4;
+		 data[0] = 20;
+		 data[1] = 40;
+		 data[2] = 10;
+		 data[3] = 30;
+
+		 mySort(data, nDataItems);//Sort array using mySort function.
+		 
+		 /* Check that the data array is sorted. */
+		 for(i = 0; i < nDataItems-1; i++) {
+			 if (data[i] > data[i+1]) {
+				 fprintf(stderr, "Sort error: data[%d] (= %d)"
+				 " should be <= data[%d] (= %d)- -aborting\n",
+				 i, data[i], i+1, data[i+1]);
+				 exit(1);
+			 }
+		 }
+		 
+		 /* Print sorted array to stdout */
+		 for(i = 0; i < nDataItems; i++) {
+			printf("%d\n", data[i]);
+		 }
+		 
+		 
+	 }
+	else{//if argc > 1 means there are further inputs after testSort2 is called.
+	  
+		nDataItems = argc - 1; /*Set length of data array to the total # of arguments/inputs given by the user.
+					 Once again, since testSort2 is also considered as an argument,
+					 we need to exclude it from the array which is why we did argc-1.*/
+
+		/*Create the data array using atoi to convert string into integers for each element in argv array*/
+		for(i = 0; i<nDataItems; i++){
+		  data[i] = atoi(argv[i+1]);/* we call argv because that is the array of arguements/inputs.
+					       Also, we used argv[i+1] because the "testSort2" element needs to be neglected.*/ 
+		}
+
+		mySort(data, nDataItems);//Sort array using mySort function
+		
+		 /* Print sorted array to stdout */
+		for(i = 0; i < nDataItems; i++){
+			printf("%d\n", data[i]);
+		}
+		 exit(0);
+	}
+}

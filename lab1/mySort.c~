@@ -1,0 +1,12 @@
+void mySort(int d[], unsigned int n)
+{ 
+  for(int index = 1; index < n; index++){
+		int compare = d[index];
+		int j=index-1;
+		while(j >= 0 && d[j] > compare){
+				d[j +1] = d[j];
+				j--;
+		 }
+		d[j + 1] = compare;
+    }	
+}

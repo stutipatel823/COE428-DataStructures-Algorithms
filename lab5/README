@@ -1,0 +1,49 @@
+Summarize your lab:
+
+  Part 1:
+     WOrks
+     
+  Part 2:
+     Works on Geany
+     
+  Part 3:
+     No errors but I couldn't figure out why its not working.
+     
+***ANSWERS TO QUESTIONS***
+ Question 1:
+     Which hash table collision resolution method did you use
+     (eg. chaining or open addressing)? Explain your choice
+     briefly (less than 25 words).
+ YOUR ANSWER:
+ I had no hash table collision method because my hash function was created in a way that it would
+always give me a unique key value for every word that I put. Example hi=317 but ih=318. check out my "try.c" to see how it works.
+ 
+ 
+ 
+ 
+ Question 2:
+       Which hash function (division or multiplication) did you use?
+       How did you convert a string into a number?
+ YOUR ANSWER:
+I used a multiplication method. key = n*key+tag[i];
+key  = index
+tag[i] = letter
+n =2
+
+I converted string to int by using casting method
+ 
+ 
+ 
+ Question 3:
+       Another legal XML tag not used in this lab is the
+       stand-alone tag.  This kind of tag
+       combines both a start-tag and end-tag in one.
+       It is identified with a '/' (slash) preceding the
+       final >.  (For example, the <foo/>
+       is a stand-alone tag that is self balancing.
+       
+       Describe briefly how
+       you would modify Part 3 to allow this kind of tag.
+       
+ YOUR ANSWER:
+  

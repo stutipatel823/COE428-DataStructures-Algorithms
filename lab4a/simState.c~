@@ -1,0 +1,144 @@
+#include <stdlib.h>
+#include <stdio.h>
+/* 
+A F C
+B G E
+C D C
+D B H
+E C G
+F E A
+G H F
+H A B
+ 
+The starting state is D */
+typedef struct state_Machine{
+    char name;
+	int number;
+	struct state_Machine * zero;
+	struct state_Machine * first;
+} fsm;
+
+fsm s[8];
+
+void initialize(){
+     //State A
+     s[0].name = 'A';
+	 s[0].number = 0;
+	 s[0].zero = s+5; //State F
+	 s[0].first = s+2; //State C
+	 
+	 //State B
+	 s[1].name = 'B';
+	 s[1].number = 1;
+	 s[1].zero = s + 6; //State G
+	 s[1].first = s + 4; //State E
+	 
+	 //State C
+	 s[2].name = 'C';
+	 s[2].number = 2;
+	 s[2].zero = s + 3; //State D
+	 s[2].first = s + 2; //State C
+	 
+	 //State D
+	 s[3].name = 'D';
+	 s[3].number = 3;
+	 s[3].zero = s + 1; //State B
+	 s[3].first = s + 7; //State H
+	 
+	 //State E
+	 s[4].name = 'E';
+	 s[4].number = 4;
+	 s[4].zero = s + 2; //State C
+	 s[4].first = s + 6; //State G
+ 
+     //State F
+	 s[5].name = 'F';
+	 s[5].number = 5;
+	 s[5].zero = s + 4; //State E
+	 s[5].first = s + 0; //State A
+	 
+	 //State G
+	 s[6].name = 'G';
+	 s[6].number = 6;
+	 s[6].zero = s + 7; //State H
+	 s[6].first = s + 5; //State F
+	 
+	 //State H
+	 s[7].name = 'H';
+	 s[7].number = 7;
+	 s[7].zero = s + 0; //State A
+	 s[7].first = s + 1; //State B	 
+}
+void print(){
+       int i=0;
+          for(i =0; i <8; i++){
+			fprintf(stdout, "%c %c %c\n", s[i].name, s[i].zero->name, s[i].first->name);
+		  }
+}
+int main(int argc, char * argv[])
+{
+  int i, j=0;
+  char input[3]; //an array for taking in commands  passed
+  initialize();
+  fsm current = s[3]; //Starting State of FSM which is D
+  //Display to the users:
+  fprintf(stdout, "Enter the commands without any spaces and hit q to quit the program. \n");
+  fprintf(stdout, "Starting State: %c \n", current.name);
+  
+  while(j!=1){
+  
+      for(i=0; i<=4;i++){
+	    scanf("%c",&input[i]);
+		if (input[i] == '\n'){
+		  //print();
+		   break;
+		}
+	  }
+	  /*switch(input[0]){
+		case 'c':
+			change();
+		case 'p':
+			print();
+			break;
+		case '0':
+			fprintf(stdout, "%c\n",current.zero->name);
+			current = s[current.zero->number];
+			break;
+		case '1':
+			fprintf(stdout, "%c\n",current.zero->name);
+			current = s[current.first->number];
+			break;
+	  }
+     */
+     //If the user enters 0
+	  if(input[0] == '0'){
+	    fprintf(stdout, "%c\n",current.zero->name);
+		current = s[current.zero->number];
+	  }
+	  
+	   //If the user enters 1
+	  if(input[0] == '1'){
+	    fprintf(stdout, "%c\n",current.first->name);
+		current = s[current.first->number];
+	  }
+	  
+	  //An optional quit inputand
+	  if(input[0] == 'q'){
+	     j =1;
+		 break;
+	  }
+  
+    //If user enter p to print
+    if(input[0] == 'p'){
+	     print();
+	  }
+    
+
+	}
+	exit(0);
+}
+
+
+
+
+

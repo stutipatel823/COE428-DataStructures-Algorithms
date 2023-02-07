@@ -1,0 +1,51 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+extern char *  pop();
+extern void push(char *);
+extern void add(char *);
+extern void display();
+
+int main(int argc, char * argv[])
+{
+  int ch;
+  int sumForward=0;
+  int sumReverse=0;
+  char append[] = "";
+  char* word;
+  
+  while ((ch = getchar()) != EOF){
+      int prev_ch;
+      char* letter = "";
+        if(ch == '<'||ch == '/'||ch == '>'){
+            if(ch == '>'){
+                word = append;
+                add(word);
+            }
+            else{prev_ch = ch;}
+        } 
+        else if(isalpha(ch)){
+            if(prev_ch == '<'|| prev_ch == '>'){
+                letter = itoa(ch,letter, 1);
+                push(letter);
+                
+                sumForward += (int)ch;
+                strncat(word,letter,1);
+            }
+            else{
+                sumReverse += (int)pop();
+            }
+        }
+    }
+    if(sumForward == sumReverse){
+        printf("Valid\n");
+        display();
+    }
+    else{printf("Not Valid");}
+     if(isEmpty() > 0){
+        printf("NOT Valid");
+        exit(1);
+    }
+  exit(0);
+}

@@ -1,0 +1,41 @@
+I have three txt files one for "best" case, "worse" case and a "random" that were used to test the sort codes.
+
+INSERTION SORT:
+- Everything Worked. All txt files were sorted when they were called in command prompt. The code also worked when I manually inputted the values.
+- I used the code from lab 1 and replaced some parts of the code with myCompare, mySwap and myCopy.
+
+	Best Case:
+	Comparisons: n-1  = O(n)
+	Swaps: 0
+	Copies: O(n)
+
+	Average Case:
+	Comparisons: O(n(n-1)/2)
+	Swaps: O(n(n-1)/2)
+	Copies: O(n)
+
+	Worse Case:
+	Comparisons: O(n(n-1)/2)
+	Swaps: O(n(n-1)/2)
+	Copies: O(n)
+
+MERGE SORT:
+- Everything Worked. All txt files were sorted when they were called in command prompt. The code also worked when I manually inputted the values.
+- I watched a youtube video that helped me better understand the merge sort algorithm. (https://www.youtube.com/watch?v=jlHkDBEumP0)
+
+	Best Case:
+	Comparisons: n/2 + n/2 +n = O(nlog(n))
+	Swaps: 0
+	Copies: n/2 + n/2 +n = O(nlog(n))
+
+	Average Case:
+	Comparisons:n/2 + n/2 +n = O(nlog(n))
+	Swaps: 0
+	Copies: n/2 + n/2 +n = O(nlog(n))
+
+	Worse Case:
+	Comparisons:n/2 + n/2 +n = O(nlog(n))
+	Swaps: 0
+	Copies: n/2 + n/2 +n = O(nlog(n))
+
+
